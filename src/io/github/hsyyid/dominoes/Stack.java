@@ -42,10 +42,10 @@ public class Stack
 		return stack.size();
 	}
 	
-	public Domino drawFromDeck()
+	public static Domino drawFromStack()
 	{
 		Random rand = new Random();
-		Domino domino = stack.get(rand.nextInt(27) + 1);
+		Domino domino = stack.get(rand.nextInt(stack.size() - 1) + 1);
 		stack.remove(domino);
 		return domino;
 	}
