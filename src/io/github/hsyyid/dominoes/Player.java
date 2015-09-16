@@ -12,7 +12,7 @@ public class Player
 		this.id = id;
 	}
 	
-	public void addDomino(Domino domino)
+	public void addDominoToStack(Domino domino)
 	{
 		this.stack.add(domino);
 	}
