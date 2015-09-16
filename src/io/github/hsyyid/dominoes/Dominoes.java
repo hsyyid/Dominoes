@@ -3,10 +3,22 @@ package io.github.hsyyid.dominoes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This simulates a game of Dominoes
+ * @author Hassan Syyid
+ * @author Joseph Oleynik
+ * @Teacher Mr.Hays
+ * @version 0.1
+ *
+ */
 public class Dominoes
 {
 	private static ArrayList<Player> players = new ArrayList<Player>();
 
+	/**
+	 * Runs the game
+	 * @param args Not used.
+	 */
 	public static void main(String[] args)
 	{
 		System.out.println("Welcome to Dominoes!");
@@ -27,6 +39,11 @@ public class Dominoes
 		in.close();
 	}
 
+	/**
+	 * Deals the specified amount of dominoes to the specified player
+	 * @param amtOfDomino Amount of dominoes to deal.
+	 * @param player Player to deal dominoes to.
+	 */
 	public static void dealDomino(int amtOfDomino, Player player)
 	{
 		for(int i = 0; i < amtOfDomino; i++)
@@ -37,6 +54,10 @@ public class Dominoes
 		}	
 	}
 
+	/**
+	 * This method picks which Player will start in the game.
+	 * @return The player that will go first.
+	 */
 	public static Player pickWhoGoesFirst()
 	{
 		Player startingPlayer = null;
