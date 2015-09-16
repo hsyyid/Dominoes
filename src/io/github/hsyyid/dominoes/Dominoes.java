@@ -36,9 +36,22 @@ public class Dominoes
 
 		Player startingPlayer = pickWhoGoesFirst();
 		players.add(0, startingPlayer);
+		
+		boolean stop = false;
+		
+		while(!stop)
+		{
+			playGame();
+		}
+		
 		in.close();
 	}
 
+	public static void playGame()
+	{
+		;
+	}
+	
 	/**
 	 * Deals the specified amount of dominoes to the specified player
 	 * @param amtOfDomino Amount of dominoes to deal.
