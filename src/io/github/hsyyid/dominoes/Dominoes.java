@@ -2,7 +2,7 @@ package io.github.hsyyid.dominoes;
 
 public class Dominoes
 {
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		Stack.createStack();
 		System.out.println("Welcome to Dominoes!");
