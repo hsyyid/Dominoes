@@ -13,4 +13,13 @@ public class Dominoes
 			System.out.println("Your Domino is " + d.getFirstVal() + ", " + d.getSecondVal());
 		}		
 	}
+	
+	public static void dealDomino(int amtOfDomino)
+	{
+		for(int i = 0; i < amtOfDomino; i++)
+		{
+			Domino d = Stack.drawFromStack();
+			System.out.println("Domino is " + d.getFirstVal() + ", " + d.getSecondVal());
+		}	
+	}
 }
