@@ -28,7 +28,13 @@ public class Dominoes
 
 		System.out.println("How many players are playing? ");
 		int amtOfPlayers = in.nextInt();
-
+		
+		if(amtOfPlayers > 4)
+		{
+			System.out.print("Error! You cannot play this game with more than 4 people.");
+			return;
+		}
+		
 		for(int i = 1; i <= amtOfPlayers; i++)
 		{
 			players.add(new Player(i));
