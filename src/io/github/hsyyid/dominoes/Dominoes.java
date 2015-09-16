@@ -35,7 +35,7 @@ public class Dominoes
 		}
 
 		Player startingPlayer = pickWhoGoesFirst();
-
+		players.add(0, startingPlayer);
 		in.close();
 	}
 
