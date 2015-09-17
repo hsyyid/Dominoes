@@ -27,6 +27,7 @@ public class Dominoes extends Canvas implements Runnable
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
+	public final String TITLE = "Dominoes";
 	public static STATE State = STATE.MENU;
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static boolean running = false;
@@ -88,7 +89,7 @@ public class Dominoes extends Canvas implements Runnable
 
 	public BufferedImage loadImage(String path) throws IOException
 	{
-		BufferedImage image = ImageIO.read(new File("H:\\Workspace\\Dominoes\\res\\background.png"));
+		BufferedImage image = ImageIO.read(new File("/background.png"));
 		return image;
 	}
 
@@ -156,24 +157,12 @@ public class Dominoes extends Canvas implements Runnable
 			return players.get(1);
 		}
 	}
-
-	public void loadTextures()
-	{
-		try
-		{
-			image = loadImage("/background.png");
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}	
+	
 
 	public void run() 
 	{
 		System.out.println("Welcome to Dominoes!");
 
-		loadTextures();
 		
 		JPanel pane = new JPanel() {
             @Override
