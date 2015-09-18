@@ -2,7 +2,6 @@ package io.github.hsyyid.dominoes;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  * This simulates a game of Dominoes
@@ -23,6 +23,7 @@ import javax.swing.JPanel;
  */
 public class Dominoes extends Canvas implements Runnable
 {
+	private static final long serialVersionUID = 1L;
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
@@ -42,6 +43,7 @@ public class Dominoes extends Canvas implements Runnable
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
+		
 		Stack.createStack();
 
 		System.out.println("How many players are playing? ");
@@ -93,8 +95,18 @@ public class Dominoes extends Canvas implements Runnable
 
 	public BufferedImage loadImage(String path) throws IOException
 	{
-		BufferedImage background = ImageIO.read(new File("/background.png"));
-		return background;
+		BufferedImage img = null;
+		
+		try
+		{
+		   img = ImageIO.read(new File(path));
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return img;
 	}
 
 	public static void playGame()
@@ -164,18 +176,20 @@ public class Dominoes extends Canvas implements Runnable
 	public void run()
 	{
 		System.out.println("Welcome to Dominoes!");
-
-		JPanel pane = new JPanel()
+		
+		try
 		{
-			@Override
-			protected void paintComponent(Graphics g)
-			{	
-				super.paintComponent(g);
-				g.drawImage(background, 0, 0, this);
-			}
-		};
-
-		game.add(pane);
+			background = this.loadImage("background.png");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		JLabel picLabel = new JLabel(new ImageIcon(background));
+		
+		game.add(picLabel);
+		game.repaint();
 
 		boolean stop = false;
 
