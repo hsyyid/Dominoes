@@ -29,7 +29,7 @@ public class Dominoes extends Canvas implements Runnable
 	public static final int SCALE = 2;
 	public final String TITLE = "Dominoes";
 	public static STATE State = STATE.MENU;
-	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static boolean running = false;
 	private static Thread thread;
 	private static JFrame game;
@@ -89,8 +89,8 @@ public class Dominoes extends Canvas implements Runnable
 
 	public BufferedImage loadImage(String path) throws IOException
 	{
-		BufferedImage image = ImageIO.read(new File("/background.png"));
-		return image;
+		BufferedImage background = ImageIO.read(new File("/background.png"));
+		return background;
 	}
 
 	public static void playGame()
@@ -167,9 +167,9 @@ public class Dominoes extends Canvas implements Runnable
 		JPanel pane = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-            	System.out.println("Stuff happen?");
+            	System.out.println("Printing, but error.");
                 super.paintComponent(g);
-                g.drawImage(image, 0, 0, null);
+                g.drawImage(background, 0, 0, this);
             }
         };
         
