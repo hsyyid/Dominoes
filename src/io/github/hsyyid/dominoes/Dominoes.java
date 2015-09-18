@@ -97,7 +97,6 @@ public class Dominoes extends Canvas implements Runnable
 
 	public static void playGame()
 	{
-
 		;
 	}
 
