@@ -33,7 +33,7 @@ public class Dominoes extends Canvas implements Runnable
 	private static boolean running = false;
 	private static Thread thread;
 	private static JFrame game;
-	
+
 	public static enum STATE
 	{
 		MENU, GAME
@@ -47,13 +47,14 @@ public class Dominoes extends Canvas implements Runnable
 		System.out.println("How many players are playing? ");
 		int amtOfPlayers = in.nextInt();
 
-		if(amtOfPlayers > 4)
+		if (amtOfPlayers > 4)
 		{
 			System.out.print("Error! You cannot play this game with more than 4 people.");
+			in.close();
 			return;
 		}
 
-		for(int i = 1; i <= amtOfPlayers; i++)
+		for (int i = 1; i <= amtOfPlayers; i++)
 		{
 			players.add(new Player(i));
 		}
@@ -71,13 +72,14 @@ public class Dominoes extends Canvas implements Runnable
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.pack();
 		game.setVisible(true);
-		in.close();	
-		
+		in.close();
+
 		Dominoes domino = new Dominoes();
 		domino.start();
 	}
-	
-	private synchronized void start() {
+
+	private synchronized void start()
+	{
 		if (running)
 			return;
 
@@ -95,7 +97,7 @@ public class Dominoes extends Canvas implements Runnable
 
 	public static void playGame()
 	{
-		
+
 		;
 	}
 
@@ -106,12 +108,12 @@ public class Dominoes extends Canvas implements Runnable
 	 */
 	public static void dealDomino(int amtOfDomino, Player player)
 	{
-		for(int i = 0; i < amtOfDomino; i++)
+		for (int i = 0; i < amtOfDomino; i++)
 		{
 			Domino d = Stack.drawFromStack();
 			player.addDominoToStack(d);
 			System.out.println("You have drawn " + d.getFirstVal() + ", " + d.getSecondVal());
-		}	
+		}
 	}
 
 	/**
@@ -123,22 +125,22 @@ public class Dominoes extends Canvas implements Runnable
 		Player startingPlayer = null;
 		int highestVal = 0;
 
-		for(Player p : players)
+		for (Player p : players)
 		{
 			System.out.println("Player " + p.getID() + ": ");
 			dealDomino(7, p);
 
-			for(Domino d : p.getStack())
+			for (Domino d : p.getStack())
 			{
-				if(d.getFirstVal() == 6 && d.getSecondVal() == 6)
+				if (d.getFirstVal() == 6 && d.getSecondVal() == 6)
 				{
 					startingPlayer = p;
 					System.out.println("Player " + startingPlayer.getID() + " will go first, with the highest double value of 6.");
 					return startingPlayer;
 				}
-				else if(d.getFirstVal() == d.getSecondVal())
+				else if (d.getFirstVal() == d.getSecondVal())
 				{
-					if(highestVal < d.getFirstVal())
+					if (highestVal < d.getFirstVal())
 					{
 						highestVal = d.getFirstVal();
 						startingPlayer = p;
@@ -147,37 +149,36 @@ public class Dominoes extends Canvas implements Runnable
 			}
 		}
 
-		if(startingPlayer != null)
+		if (startingPlayer != null)
 		{
 			System.out.println("Player " + startingPlayer.getID() + " will go first, with the highest double value of " + highestVal + ".");
 			return startingPlayer;
 		}
 		else
 		{
-			return players.get(1);
+			return players.get(0);
 		}
 	}
-	
 
-	public void run() 
+	public void run()
 	{
 		System.out.println("Welcome to Dominoes!");
 
-		
-		JPanel pane = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-            	System.out.println("Printing, but error.");
-                super.paintComponent(g);
-                g.drawImage(background, 0, 0, this);
-            }
-        };
-        
-        game.add(pane);
-		
+		JPanel pane = new JPanel()
+		{
+			@Override
+			protected void paintComponent(Graphics g)
+			{	
+				super.paintComponent(g);
+				g.drawImage(background, 0, 0, this);
+			}
+		};
+
+		game.add(pane);
+
 		boolean stop = false;
 
-		while(!stop)
+		while (!stop)
 		{
 			playGame();
 		}
