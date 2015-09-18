@@ -43,7 +43,7 @@ public class Dominoes extends Canvas implements Runnable
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
-		
+
 		Stack.createStack();
 
 		System.out.println("How many players are playing? ");
@@ -96,10 +96,10 @@ public class Dominoes extends Canvas implements Runnable
 	public BufferedImage loadImage(String path) throws IOException
 	{
 		BufferedImage img = null;
-		
+
 		try
 		{
-		   img = ImageIO.read(new File(path));
+			img = ImageIO.read(new File(path));
 		}
 		catch (IOException e)
 		{
@@ -176,7 +176,7 @@ public class Dominoes extends Canvas implements Runnable
 	public void run()
 	{
 		System.out.println("Welcome to Dominoes!");
-		
+
 		try
 		{
 			background = this.loadImage("background.png");
@@ -185,9 +185,9 @@ public class Dominoes extends Canvas implements Runnable
 		{
 			e.printStackTrace();
 		}
-		
+
 		JLabel picLabel = new JLabel(new ImageIcon(background));
-		
+
 		game.add(picLabel);
 		game.repaint();
 
