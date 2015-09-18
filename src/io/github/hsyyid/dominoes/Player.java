@@ -6,8 +6,9 @@ public class Player
 {
 	private int id;
 	private ArrayList<Domino> stack = new ArrayList<Domino>();
-
-	public Player(int id)
+	private String name;
+	
+	public Player(int id, String name)
 	{
 		this.id = id;
 	}
@@ -20,6 +21,11 @@ public class Player
 	public int getID()
 	{
 		return this.id;
+	}
+	
+	public String getName()
+	{
+		return this.name;
 	}
 
 	public ArrayList<Domino> getStack()

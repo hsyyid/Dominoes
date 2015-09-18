@@ -56,7 +56,9 @@ public class Dominoes extends Canvas implements Runnable
 
 		for (int i = 1; i <= amtOfPlayers; i++)
 		{
-			players.add(new Player(i));
+			System.out.println("Player " + i + ", what would you like to be called?");
+			String name = in.nextLine();
+			players.add(new Player(i, name));
 		}
 
 		Player startingPlayer = pickWhoGoesFirst();
