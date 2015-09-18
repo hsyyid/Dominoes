@@ -29,21 +29,14 @@ public class Dominoes extends Canvas implements Runnable
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Dominoes";
-	public static STATE State = STATE.MENU;
 	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static boolean running = false;
 	private static Thread thread;
 	private static JFrame game;
-
-	public static enum STATE
-	{
-		MENU, GAME
-	}
-
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
-		
+
 		Stack.createStack();
 
 		System.out.println("How many players are playing? ");
@@ -70,7 +63,6 @@ public class Dominoes extends Canvas implements Runnable
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.setResizable(false);
 		game.setLocationRelativeTo(null);
-		game.setPreferredSize(new Dimension());
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -96,10 +88,10 @@ public class Dominoes extends Canvas implements Runnable
 	public BufferedImage loadImage(String path) throws IOException
 	{
 		BufferedImage img = null;
-		
+
 		try
 		{
-		   img = ImageIO.read(new File(path));
+			img = ImageIO.read(new File(path));
 		}
 		catch (IOException e)
 		{
@@ -176,18 +168,19 @@ public class Dominoes extends Canvas implements Runnable
 	public void run()
 	{
 		System.out.println("Welcome to Dominoes!");
-		
+
 		try
 		{
 			background = this.loadImage("background.png");
+			System.out.println("Background Loaded");
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		
+
 		JLabel picLabel = new JLabel(new ImageIcon(background));
-		
+
 		game.add(picLabel);
 		game.repaint();
 
